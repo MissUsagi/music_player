@@ -1,5 +1,5 @@
 <template>
-      <button :class="mode">
+      <button :class="mode" :type="type">
       <slot></slot>
    </button>
 </template>
@@ -12,19 +12,42 @@ export default {
          required: false,
          default: null
       },
+         type:{
+         type: String,
+         required: false,
+         default: null
+      },
       }
       }
       </script>
 
 <style scoped>
+
 button {
-   width: 30px;
-   height: 30px;
+   width: 80px;
+   height: 80px;
+   margin: 5px;
+   text-align: center;
+   align-content: center;
    border-radius: 50%;
+   font-size: 1.6rem;
    border: none;
    background-color: var(--primary-color);
    color: white;
    cursor: pointer;
+}
+button:hover {
+   background-color: var(--secondary-color);
+}
+
+.btn-xl {
+   min-width: 100px;
+   min-height: 100px;
+}
+
+.btm-sm {
+   min-width: 60px;
+   min-height: 60px;
 }
 
 .btn-no-bg{
@@ -58,10 +81,6 @@ button {
 
 .btn-inactive {
    color: var(--inactive-color);
-}
-
-button:hover {
-   background-color: var(--secondary-color);
 }
 
 </style>
