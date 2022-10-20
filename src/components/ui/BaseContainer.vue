@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="container">
    <slot></slot>
 </div>
 </template>
@@ -8,12 +8,18 @@
 div {
    position: relative;
    margin: auto;
-   padding: 20px;
-   width: 350px;
-   height: calc(100vh - 40px);
+   width: 800px;
+   height: 80vh;
    background-color: var(--light-grey);
-   border-radius: 20px;
+   border-radius: 30px;
    overflow-y: scroll;
 }
+/* 
+@media only screen and (max-width: 600px) {
+  div {
+    width: 100%;
+
+  }
+} */
 
 </style>

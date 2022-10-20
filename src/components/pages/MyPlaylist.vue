@@ -1,23 +1,26 @@
 <template>
    <base-container>
-   <header>
-   <base-button mode="btn-bg-light"><i class="fa-solid fa-reply fa-lg"></i></base-button>
+
+   <base-header>  
+   <base-button mode="btn-bg-light btn-sm" type="button"><i class="fa-solid fa-reply fa-lg"></i></base-button>
    <h2>Playlist</h2>
-   </header>
+   </base-header>
+
    <section>
    <ul>
-  <song-item v-for="song in songs" :key="songs.indexOf(song)" :title="song.title" :artist="song.artist" :duration="song.duration"></song-item>
+  <song-item v-for="song in songs" :key="songs.indexOf(song)" :title="song.title" :artist="song.artist" :duration="song.duration" :isFavourite="songs.isFavourite"></song-item>
    </ul>
    </section>
+   
+   <div class="overlay"></div>
    </base-container>
 </template>
 
 <script>
 import SongItem from '../playlist/SongItem.vue';
-import BaseButton from '../ui/BaseButton.vue';
 
 export default {
-   components: {SongItem, BaseButton},
+   components: {SongItem},
    data(){
     return { 
       songs: [
@@ -25,7 +28,7 @@ export default {
           title: 'Electronic Future Beats',
           artist: 'QubeSounds',
           src: require('../../assets/music/electronic-future-beats-117997.mp3'),
-          img: '',
+          img: '../../assets/images/city-gc961cfcb_640.jpg',
           isFavourite: false,
           duration: '2:06',
         },
@@ -84,20 +87,29 @@ export default {
 </script>
 
 <style scoped>
-header {
-   display: flex;
-   flex-direction: row;
-   margin-bottom: 10px;
+
+section{
+   padding: 20px 30px 20px 40px;
 }
+
 ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 h2{
    color: var(--primary-color);
    font-weight: 600;
    margin: auto;
+   font-size: 2.8rem;
+}
+
+.overlay{
+   position: sticky;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 5%;
+   background-color: rgba(255, 255, 255, 0.8);
+   filter: blur(16px);
 }
 </style>
