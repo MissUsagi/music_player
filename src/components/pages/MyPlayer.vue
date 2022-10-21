@@ -1,35 +1,51 @@
 <template>
   <base-container class="no-overflow">
-    <div class="img-container">
-      <div class="player-menu"></div>
+    <div class="song-details">
+      <player-menu class="player-menu"></player-menu>
+
     <div class="info-label">
-      <h2>{{songs[0].artist}}</h2>
-      <h3>{{songs[0].title}}</h3>
+      <!-- <h2>{{songs[0].artist}}</h2>
+      <h3>{{songs[0].title}}</h3> -->
+      <h2>{{nowPlaying[index].artist}}</h2>
+      <h3>{{nowPlaying[index].title}}</h3>
       </div>
-      <img :src="songs[0].img" alt="" />
+
+      <img :src="nowPlaying[index].img" alt="" />
     </div>
-<player-actions></player-actions>
+<player-actions @click="songIndex"></player-actions>
   </base-container>
 </template>
 
 <script>
 import PlayerActions from '../player/PlayerActions.vue';
+import PlayerMenu from '../player/PlayerMenu.vue';
 export default {
-  components: { PlayerActions },
+  components: { PlayerActions, PlayerMenu},
+
   data() {
     return {
-      songs: [
-        {
-          title: "Electronic Future Beats",
-          artist: "QubeSounds",
-          src: require("../../assets/music/electronic-future-beats-117997.mp3"),
-          img: require("../../assets/images/city.jpg"),
-          isFavourite: false,
-          duration: "2:06",
-        },
-      ],
+      index: this.$store.getters.songIndex, 
     };
   },
+  computed: {
+    nowPlaying(){
+      return this.$store.getters.playlist;
+    },
+
+
+  },
+  
+  methods:{
+      songIndex()
+      {
+        // logika do poprawy  nie wiem czemu to działa o.o
+      this.index =  this.$store.getters.index;
+      console.log(this.index);
+      return this.index;
+    }
+
+
+  }
 };
 </script>
 
@@ -38,15 +54,19 @@ export default {
 
 h2 {
    font-weight: 600;
-   font-size: 1.5rem;
+   font-size: 1.8rem;
 }
 
 h3{
    font-weight: 400;
+   font-size: 1.3rem;
 }
 
+.no-overflow {
+  overflow: hidden;
+}
 
-.img-container {
+.song-details {
    position: relative;
    height: 70%;
 }
@@ -54,12 +74,11 @@ h3{
 .player-menu {
    position: absolute;
    background-color: rgba(47, 26, 75, 0.5);
-   /* background-color: yellow; */
-   height: 90px;
+   height: 17%;
    border-radius: 20px 20px 0 0;
-width: 100%;
-top: 0;
-z-index: 3;
+  width: 100%;
+  top: 0;
+  z-index: 3;
 }
 
 .info-label {
@@ -69,7 +88,7 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 background-color: rgba(47, 26, 75, 0.5);
-height: 100px;
+height: 20%;
 width: 100%;
 bottom: 0;
 color: white;
