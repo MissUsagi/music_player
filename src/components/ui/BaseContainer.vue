@@ -13,6 +13,7 @@ div {
    background-color: var(--light-grey);
    border-radius: 30px;
    overflow-y: scroll;
+   box-shadow: 0 10px 6px -2px rgba(51, 51, 51, 0.3);
 }
 /* 
 @media only screen and (max-width: 600px) {

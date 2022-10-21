@@ -2,13 +2,13 @@
    <base-container>
 
    <base-header>  
-   <base-button mode="btn-bg-light btn-sm" type="button"><i class="fa-solid fa-reply fa-lg"></i></base-button>
+   <router-link to="/player"><base-button mode="btn-bg-light btn-sm" type="button"><i class="fa-solid fa-reply fa-lg"></i></base-button></router-link>
    <h2>Playlist</h2>
    </base-header>
 
    <section>
    <ul>
-  <song-item v-for="song in songs" :key="songs.indexOf(song)" :title="song.title" :artist="song.artist" :duration="song.duration" :isFavourite="songs.isFavourite"></song-item>
+  <song-item v-for="song in playlist" :key="playlist.indexOf(song)" :index="playlist.indexOf(song)" :title="song.title" :artist="song.artist" :duration="song.duration" :isFavourite="song.isFavourite"></song-item>
    </ul>
    </section>
    
@@ -21,66 +21,10 @@ import SongItem from '../playlist/SongItem.vue';
 
 export default {
    components: {SongItem},
-   data(){
-    return { 
-      songs: [
-        {
-          title: 'Electronic Future Beats',
-          artist: 'QubeSounds',
-          src: require('../../assets/music/electronic-future-beats-117997.mp3'),
-          img: '../../assets/images/city-gc961cfcb_640.jpg',
-          isFavourite: false,
-          duration: '2:06',
-        },
-        {
-          title: 'Forest Lullaby',
-          artist: 'Lesfm',
-          src: require('../../assets/music/forest-lullaby-110624.mp3'),
-          img: '',
-          isFavourite: false,
-          duration: '2:18',
-        },
-               {
-          title: 'Into The Night',
-          artist: 'prazkhanal',
-          src: require('../../assets/music/into-the-night-20928.mp3'),
-          img: '',
-          isFavourite: false,
-          duration: '2:20',
-        },
-                       {
-          title: 'Lofi Study',
-          artist: 'FASSounds',
-          src: require('../../assets/music/lofi-study-112191.mp3'),
-          img: '',
-          isFavourite: false,
-          duration: '2:27',
-        },
-               {
-          title: 'Moment',
-          artist: 'SergeQuadrado',
-          src: require('../../assets/music/moment-14023.mp3'),
-          img: '',
-          isFavourite: false,
-         duration: '3:32',
-        }, 
-        {
-             title: 'Powerful Beat',
-          artist: 'penguinmusic',
-          src: require('../../assets/music/powerful-beat-121791.mp3'),
-          img: '',
-          isFavourite: false,
-          duration: '1:13',
-        },
-              {
-             title: 'Slow Trap',
-          artist: 'Anton Vlasov',
-          src: require('../../assets/music/slow-trap-18565.mp3'),
-          img: '',
-          isFavourite: false,
-          duration: '2:34'
-        },
-      ]
+   
+  computed: {
+    playlist(){
+      return this.$store.getters.playlist;
     }
   }
 }

@@ -29,6 +29,7 @@ button {
    margin: 5px;
    text-align: center;
    align-content: center;
+   justify-content: center;
    border-radius: 50%;
    font-size: 1.6rem;
    border: none;
@@ -37,7 +38,7 @@ button {
    cursor: pointer;
 }
 button:hover {
-   background-color: var(--secondary-color);
+   background-color: var(--primary-dark);
 }
 
 .btn-xl {
@@ -62,7 +63,7 @@ button:hover {
 .btn-bg-light:hover {
       background-color: white;
       color: var(--primary-dark);
-        scale: 1.2;
+        scale: 1.1;
            transition: scale 50ms ease-in;
 }
 
