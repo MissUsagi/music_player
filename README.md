@@ -29,7 +29,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 https://usagi-musicplayer.netlify.app/
 
 Credits:
-Royalty free music -> from https://pixabay.com/music/
+Royalty free music from: https://pixabay.com/music/
 Powerful Beat penguinmusic, 
 Lofi Study FASSounds,
  Forest Lullaby Lesfm,
@@ -38,4 +38,4 @@ Slow Trap Anton Vlasov,
 Moment SergeQuadrado,
 Electronic Future Beats QubeSounds
 
-Free images from -> https://pixabay.com/photos/
+Free images from: https://pixabay.com/photos/
