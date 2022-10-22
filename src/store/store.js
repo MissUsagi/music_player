@@ -33,7 +33,7 @@ const store = createStore({
           artist: 'FASSounds',
           src: require('../assets/music/lofi-study-112191.mp3'),
           img: require('../assets/images/triangle.jpg'),
-          isFavourite: false,
+          isFavourite: true,
           duration: '2:27',
         },
         {
@@ -61,22 +61,32 @@ const store = createStore({
           duration: '2:34'
         },
       ],
-      nowPlaying: {},
       index: 0,
+      player: new Audio(),
+      nowPlaying: false,
     };
   },
   getters: {
     playlist(state) {
       return state.songs;
     },
-    currentSong(state) {
-      return state.nowPlaying;
-    },
     songIndex(state) {
       return state.index;
     },
+  },
 
+  mutations: {
+    play(state, payload) {
+      state.player.src = state.songs[payload.value].src;
+      state.player.play();
+      state.nowPlaying = true;
+    },
+    pause(state) {
+      state.player.pause();
+      state.nowPlaying = false;
+    },
   }
+
 });
 
 export default store

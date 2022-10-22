@@ -16,11 +16,4 @@ header {
    align-items: center;
    padding: 25px 30px 20px 30px;
 }
-
-/* h2{
-   color: var(--primary-color);
-   font-weight: 600;
-   margin: auto;
-   font-size: 2.8rem;
-} */
 </style>

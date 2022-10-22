@@ -1,13 +1,13 @@
 <template>
-<div></div>
-<transition><router-view></router-view></transition>
+<router-view v-slot="slotProps"><transition name="route" mode="out-in">
+  <component :is="slotProps.Component"></component>
+  </transition></router-view>
 </template>
 
 <script>
 
 export default {
   name: 'App',
-
 }
 </script>
 
@@ -26,6 +26,11 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+
+a {
+  text-decoration: none;
+}
+
 
 .container::-webkit-scrollbar {
   width: 30px;
@@ -60,33 +65,36 @@ background-image: linear-gradient(-225deg, #A8BFFF 0%, #884D80 100%);
 background-repeat: no-repeat;
 background-size: cover;
 background-attachment: fixed;
-margin: 40px 0;
+margin: 50px 0;
 }
 
 #app {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
   font-family: 'Rambla', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+   
 }
 
-.v-enter-from{
+.route-enter-from,
+.route-leave-to{
   opacity: 0;
 }
-.v-enter-active{
-  transition: all 0.3s ease-out;
+.route-enter-active{
+  transition: opacity 0.3s ease-out;
 }
-.v-enter-to{
+.route-leave-active{
+  transition: opacity 0.3s ease-in;
+}
+.route-enter-to,
+.route-leave-from{
    opacity: 1;
 }
-
-
-/* 
-
-@media only screen and (max-width: 600px) {
-  body {
-   margin: 0;
-  }
-} */
 
 </style>

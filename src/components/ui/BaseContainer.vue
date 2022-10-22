@@ -15,12 +15,13 @@ div {
    overflow-y: scroll;
    box-shadow: 0 10px 6px -2px rgba(51, 51, 51, 0.3);
 }
-/* 
+
 @media only screen and (max-width: 600px) {
   div {
-    width: 100%;
-
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0
   }
-} */
+}
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="actions">
+  <div class="btn-container">
     <base-button mode="btn-bg-light"
       ><i class="fa-solid fa-share-nodes fa-lg"></i
     ></base-button>
@@ -7,7 +7,7 @@
       <base-button @click="prev"
         ><i class="fa-solid fa-backward-step fa-lg"></i
       ></base-button>
-      <base-button mode="btn-xl" v-if="!isPlaying" @click="playMusic"
+      <base-button mode="btn-xl btn-outline" v-if="!isPlaying" @click="playMusic"
         ><i class="fa-solid fa-play fa-2xl"></i
       ></base-button>
       <base-button mode="btn-xl" v-else @click="pauseMusic"
@@ -17,7 +17,7 @@
         ><i class="fa-solid fa-forward-step fa-lg"></i
       ></base-button>
     </div>
-    <base-button mode="btn-bg-light"
+    <base-button @click="toggleFav" :class="{ fav: isFav }" mode="btn-bg-light" 
       ><i class="fa-solid fa-heart fa-lg"></i
     ></base-button>
   </div>
@@ -27,47 +27,61 @@
 export default {
   data() {
     return {
-      isPlaying: false,
+      isPlaying: this.$store.state.nowPlaying,
       index: this.$store.getters.songIndex,
     };
   },
-  provide(){
-    return {
-      songIndex: this.index,
-    }
+  computed: {
+    isFav(){ return this.$store.getters.playlist[this.index].isFavourite;}
   },
+
   methods: {
     playMusic() {
-      return (this.isPlaying = !this.isPlaying);
+      this.$store.commit('play', {value: this.index})
+      this.isPlaying = true;
     },
+
     pauseMusic() {
-      return (this.isPlaying = !this.isPlaying);
+      this.$store.commit('pause')
+       this.isPlaying = false;
     },
+
     prev() {
       this.index--;
       if (this.index < 0) {
         this.index = this.$store.getters.playlist.length - 1;
       }
-      this.$store.getters.index = this.index;
-      console.log( this.$store.getters.index);
+      this.$store.state.index = this.index;
+            if(this.isPlaying === true) {         
+          this.$store.commit('play', {value: this.index})
+          }
     },
+
     next() {
       this.index++;
       if (this.index > this.$store.getters.playlist.length - 1) {
         this.index = 0;
       }
-         this.$store.getters.index = this.index;
-      console.log(this.$store.getters.index);
+         this.$store.state.index = this.index;
+         if(this.isPlaying === true) {         
+          this.$store.commit('play', {value: this.index})
+          }
     },
+
+    toggleFav(){
+      this.$store.getters.playlist[this.index].isFavourite = !this.$store.getters.playlist[this.index].isFavourite;
+    }
+
   },
 };
 </script>
 
 <style scoped>
-.actions {
+.btn-container {
   display: flex;
   height: 30%;
   padding: 0 30px;
+  margin: 0 10px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -77,5 +91,23 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 10px;
 }
+
+.fav {
+  color: var(--secondary-color) !important;
+}
+
+@media only screen and (max-width: 600px) {
+
+button.btn-bg-light {
+  display: none;
+}
+
+.btn-container {
+  justify-content: center;
+}
+
+}
+
 </style>

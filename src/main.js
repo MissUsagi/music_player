@@ -5,13 +5,18 @@ import App from './App.vue';
 import BaseButton from './components/ui/BaseButton.vue';
 import BaseContainer from './components/ui/BaseContainer.vue';
 import BaseHeader from './components/ui/BaseHeader.vue';
+import BaseProgressbar from './components/ui/BaseProgressbar.vue';
 
 const app = createApp(App);
 app.use(store);
-app.use(router);
 app.component('base-button', BaseButton);
 app.component('base-container', BaseContainer);
 app.component('base-header', BaseHeader);
+app.component('base-progressbar', BaseProgressbar);
+app.use(router);
 
-app.mount('#app');
+router.isReady().then(function () {
+   app.mount('#app');
+});
+
 

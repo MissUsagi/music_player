@@ -8,6 +8,7 @@ const router = createRouter({
       { path: '/', redirect: '/player' },
       { path: '/player', component: MyPlayer },
       { path: '/playlist', component: MyPlaylist },
+      { path: '/:notFound(.*)', component: MyPlayer },
       // { path: '/:notFound(.*)', component: NotFound },
    ]
 });

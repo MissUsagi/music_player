@@ -3,16 +3,14 @@
     <div class="song-details">
       <player-menu class="player-menu"></player-menu>
 
-    <div class="info-label">
-      <!-- <h2>{{songs[0].artist}}</h2>
-      <h3>{{songs[0].title}}</h3> -->
-      <h2>{{nowPlaying[index].artist}}</h2>
-      <h3>{{nowPlaying[index].title}}</h3>
+    <div class="song-info">
+      <h2>{{nowPlaying[songIndex].artist}}</h2>
+      <h3>{{nowPlaying[songIndex].title}}</h3>
       </div>
-
-      <img :src="nowPlaying[index].img" alt="" />
+      <img :src="nowPlaying[songIndex].img" alt="" />
     </div>
-<player-actions @click="songIndex"></player-actions>
+    <base-progressbar></base-progressbar>
+<player-actions></player-actions>
   </base-container>
 </template>
 
@@ -21,31 +19,15 @@ import PlayerActions from '../player/PlayerActions.vue';
 import PlayerMenu from '../player/PlayerMenu.vue';
 export default {
   components: { PlayerActions, PlayerMenu},
-
-  data() {
-    return {
-      index: this.$store.getters.songIndex, 
-    };
-  },
   computed: {
     nowPlaying(){
       return this.$store.getters.playlist;
     },
-
-
+    songIndex(){
+      return this.$store.getters.songIndex;
+    }
   },
   
-  methods:{
-      songIndex()
-      {
-        // logika do poprawy  nie wiem czemu to działa o.o
-      this.index =  this.$store.getters.index;
-      console.log(this.index);
-      return this.index;
-    }
-
-
-  }
 };
 </script>
 
@@ -74,14 +56,14 @@ h3{
 .player-menu {
    position: absolute;
    background-color: rgba(47, 26, 75, 0.5);
-   height: 17%;
+   height: 20%;
    border-radius: 20px 20px 0 0;
   width: 100%;
   top: 0;
   z-index: 3;
 }
 
-.info-label {
+.song-info {
 position: absolute;
 display: flex;
 flex-direction: column;
@@ -104,5 +86,19 @@ img {
   object-fit: cover;
   border-radius: 20px 20px 0 0;
 }
+
+@media only screen and (max-width: 600px) {
+  img {
+    border-radius: 0;
+  }
+  .player-menu {
+    border-radius: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center
+  }
+}
+
 
 </style>

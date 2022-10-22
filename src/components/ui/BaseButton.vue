@@ -24,12 +24,10 @@ export default {
 <style scoped>
 
 button {
-   width: 80px;
-   height: 80px;
-   margin: 5px;
+   width: 2.8em;
+   height: 2.8em;
+   margin: 5px 10px;
    text-align: center;
-   align-content: center;
-   justify-content: center;
    border-radius: 50%;
    font-size: 1.6rem;
    border: none;
@@ -41,18 +39,28 @@ button:hover {
    background-color: var(--primary-dark);
 }
 
+a {
+   text-decoration: none;
+}
+
+.btn-primary {
+   color: var(--primary-color);
+}
+.btn-secondary {
+   color: var(--secondary-color);
+}
+
+.btn-inactive {
+   color: var(--inactive-color);
+}
+
+.btn-outline {
+   outline: var(--inactive-color) 10px solid;
+}
+
 .btn-xl {
-   min-width: 100px;
-   min-height: 100px;
-}
-
-.btm-sm {
-   min-width: 60px;
-   min-height: 60px;
-}
-
-.btn-no-bg{
-   background: none;
+   min-width: 4em;
+   min-height: 4em;
 }
 
 .btn-bg-light {
@@ -66,6 +74,9 @@ button:hover {
         scale: 1.1;
            transition: scale 50ms ease-in;
 }
+.btn-no-bg{
+   background: none;
+}
 
 .btn-no-bg:hover {
    scale: 1.2;
@@ -73,15 +84,13 @@ button:hover {
    transition: scale 50ms ease-in;
 }
 
-.btn-primary {
-   color: var(--primary-color);
-}
-.btn-secondary {
-   color: var(--secondary-color);
+@media only screen and (max-width: 600px) {
+button {
+   width: 2.5em;
+   height: 2.5em;
+   margin: 5px 10px;
 }
 
-.btn-inactive {
-   color: var(--inactive-color);
 }
 
 </style>

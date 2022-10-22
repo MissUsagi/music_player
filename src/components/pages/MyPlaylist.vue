@@ -56,4 +56,10 @@ h2{
    background-color: rgba(255, 255, 255, 0.8);
    filter: blur(16px);
 }
+
+@media only screen and (max-width: 600px) {
+section {
+   padding: 15px 10px 15px 20px;
+}
+}
 </style>
