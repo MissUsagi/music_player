@@ -25,7 +25,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 
-### Live Demo version can be found here - > 
+### Live Demo version can be found here: 
 https://usagi-musicplayer.netlify.app/
 
 Credits:
